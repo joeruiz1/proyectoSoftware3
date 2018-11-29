@@ -7,6 +7,7 @@ package Dao;
 
 import Conexion.DbUtil;
 import Conexion.conexion;
+import Modelo.Carro;
 import Modelo.ventas;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -30,6 +31,7 @@ public class ventasDao {
     
     public List<ventas> Listarventas() {
         List<ventas> users = new ArrayList<ventas>();
+        List<Carro> users2 = new ArrayList<Carro>();
         try {
             System.out.println("LLegue hasta aca");
             Statement statement = connection.createStatement();
@@ -37,19 +39,21 @@ public class ventasDao {
             ResultSet rs = statement.executeQuery("select distinct idVentas,Marca,color,precio,idConcesionario,Carro.idCarro,tipo from ventas  join carro on (ventas.idCarro=carro.idCarro)");
             while (rs.next()) {
             ventas v = new ventas();
+            Carro c=new Carro();
             v.setIdVentas(rs.getInt("idVentas"));
             v.setIdConsecionario(rs.getInt("idConcesionario"));
             v.setIdCarro(rs.getInt("idCarro"));
-//               v.setUbicacionEspa(rs.getString("ubicacionEspacial"));
                
                
                 users.add(v);
+                users2.add(c);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return users;
+        
     }
     
     
