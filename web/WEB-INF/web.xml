@@ -4,9 +4,17 @@
         <servlet-name>servletVenta</servlet-name>
         <servlet-class>Controladores.servletVenta</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>servletMercadeo</servlet-name>
+        <servlet-class>Controladores.servletMercadeo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>servletVenta</servlet-name>
         <url-pattern>/servletVenta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servletMercadeo</servlet-name>
+        <url-pattern>/servletMercadeo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

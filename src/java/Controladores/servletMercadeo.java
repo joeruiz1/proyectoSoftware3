@@ -5,9 +5,10 @@
  */
 package Controladores;
 
+import Dao.MercadeoDao;
 import Dao.ventasDao;
+import Modelo.genericoMercadeo;
 import Modelo.genericoVentas;
-import Modelo.ventas;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Labing
  */
-public class servletVenta extends HttpServlet {
+public class servletMercadeo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +41,10 @@ public class servletVenta extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet servletVenta</title>");
+            out.println("<title>Servlet servletMercadeo</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet servletVenta at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet servletMercadeo at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,12 +62,13 @@ public class servletVenta extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rq = request.getRequestDispatcher("listarVentas.jsp");
+        processRequest(request, response);
+         RequestDispatcher rq = request.getRequestDispatcher("listarMercadeo.jsp");
 
-        ventasDao cru = new ventasDao();
+        MercadeoDao cru = new MercadeoDao();
 
-        ArrayList<genericoVentas> v = null;
-        v = (ArrayList<genericoVentas>) cru.Listarventas();
+        ArrayList<genericoMercadeo> v = null;
+        v = (ArrayList<genericoMercadeo>) cru.Listarmercadeo();
         if (v.size() > 0) {
 
             request.setAttribute("lis", v);

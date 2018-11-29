@@ -1,11 +1,10 @@
 <%-- 
-    Document   : listarVentas
-    Created on : 28/11/2018, 05:54:46 PM
+    Document   : listarMercadeo
+    Created on : 29/11/2018, 02:09:57 PM
     Author     : Labing
 --%>
 
-<%@page import="Modelo.genericoVentas"%>
-<%@page import="Modelo.ventas"%>
+<%@page import="Modelo.genericoMercadeo"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,7 +14,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div id="wrapper">
+ 
+            <div id="wrapper">
             <section>
                 <div class="container">
                     <div class="dynamicContent">
@@ -25,25 +25,24 @@
                             <tr>
                                 <td>MARCA</td>
                                 <td>COLOR</td>
-                                <td>PRECIO</td>
-                                <td>IDCONCESIONARIO</td>
-                                <td>TIPO DE AUTO</td>
+                                <td>TIPO</td>
+                                
 
 
                             </tr>
                             <%
                                 if (request.getAttribute("lis") != null) {
-                                    ArrayList<genericoVentas> em = (ArrayList<genericoVentas>) request.getAttribute("lis");
+                                    ArrayList<genericoMercadeo> em = (ArrayList<genericoMercadeo>) request.getAttribute("lis");
 
                                     if (em != null) {
-                                        for (genericoVentas es : em) {
+                                        for (genericoMercadeo es : em) {
 
                             %>
                             <h1></h1>
                             <tr>  
                                 <td><%=es.getMarca()%></td>
                                 <td><%=es.getColor()%></td>
-                                <td><%=es.getPrecio()%></td>
+                                <td><%=es.getTipo()%></td>
                                 
                             </tr>
 
@@ -65,5 +64,9 @@
         </script>
         <h2><a href="index.jsp"> volver al menu</a></h2>
 
+        
+        
+        
+        
     </body>
 </html>

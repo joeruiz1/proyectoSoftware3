@@ -8,6 +8,7 @@ package Dao;
 import Conexion.DbUtil;
 import Conexion.conexion;
 import Modelo.Carro;
+import Modelo.genericoVentas;
 import Modelo.ventas;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -29,24 +30,28 @@ public class ventasDao {
     
     }
     
-    public List<ventas> Listarventas() {
-        List<ventas> users = new ArrayList<ventas>();
-        List<Carro> users2 = new ArrayList<Carro>();
+    public List<genericoVentas> Listarventas() {
+        List<genericoVentas> users = new ArrayList<genericoVentas>();
+        
+        
         try {
             System.out.println("LLegue hasta aca");
             Statement statement = connection.createStatement();
 
-            ResultSet rs = statement.executeQuery("select distinct idVentas,Marca,color,precio,idConcesionario,Carro.idCarro,tipo from ventas  join carro on (ventas.idCarro=carro.idCarro)");
+            ResultSet rs = statement.executeQuery("select distinct Marca,color,precio,tipo from ventas  join carro on (ventas.idCarro=carro.idCarro)");
             while (rs.next()) {
-            ventas v = new ventas();
+            genericoVentas v = new genericoVentas();
             Carro c=new Carro();
-            v.setIdVentas(rs.getInt("idVentas"));
-            v.setIdConsecionario(rs.getInt("idConcesionario"));
-            v.setIdCarro(rs.getInt("idCarro"));
-               
-               
-                users.add(v);
-                users2.add(c);
+           
+           // v.setIdCarro(rs.getInt("idCarro"));
+             
+           v.setMarca(rs.getString("Marca"));
+           v.setColor(rs.getString("color"));
+           v.setPrecio(rs.getInt("precio"));
+           v.setTipo(rs.getString("tipo"));
+                
+           users.add(v);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
